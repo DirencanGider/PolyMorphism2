@@ -124,6 +124,9 @@ public class Main {
         }
 
     }
+
+    //Özetle; yukarıda 50 hayvan varsa bu kontrolü 50 satırda yapmamız gerekir. Polymorphism bunun önüne geçiyor.
+
     public static void main(String[] args) {
 
         Kopek kopek = new Kopek("Karabaş");

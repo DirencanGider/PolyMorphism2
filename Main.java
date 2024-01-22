@@ -1,6 +1,10 @@
 /* 
- instanceof keywordü(anahtar kelimesi): Bir objenin hangi sınıftan olduğunu öğrenmemizi sağlıyor.
+    instanceof keywordü(anahtar kelimesi): Bir objenin hangi sınıftan olduğunu öğrenmemizi sağlıyor.
+    Bu derste Polymorphism'in önemini, eğer olmasaydı nasıl zorluklarla karşılaşabileceğimizi, ne kadar uzun kodlar yazmamız gerekebileceğini göreceğiz.
+    İlk derste oluşturduğumuz hiyerarşik Hayvan - Kedi - Köpek - At classlarını aynı şekilde yapıştırdım. Asıl olay main
+    metodu içerisinde yazılanlarda.
 */
+
 class Hayvan {
     private String isim;
 
@@ -79,10 +83,45 @@ public class Main {
     }
     */
 
-    public static void konustur(Object object) { /*Javada defaultta bulunan Object class'ında object referansı
-                                                    oluşturduk. Hayvan hayvan yerine yazdık.*/
+    public static void konustur(Object object) { /* Javada defaultta bulunan Object class'ında object referansı
+                                                    oluşturduk. Bu Object class'ı diğer bütün classları kapsayan
+                                                     bir class. Hayvan hayvan yerine yazdık.
+                                                    Polymorphism 1'de burası Hayvan hayvan iken sadece bir fonksiyon
+                                                    yazarak tüm hayvanları konuşturmuştuk. Aşağıdaki gibi if koşulları
+                                                    ile kontrol sağlamamıza gerek kalmadan. Hayvan hayvan diğer
+                                                    alt sınıflara referans gösterebiliyordu.
+                                                    "hayvan.konus()" dediğimiz zaman override edilen methodlara
+                                                    bakıyordu ve hangi nesne ise onu çalıştırıyordu.
+                                                    Fakat burada object yazdığımız zaman bu objenin hangi nesneden oldu
+                                                   -nu anlamamız için ekstradan kontroller yapmamız gerekti.
+                                                   */
 
-        System.out.println(object.konus()); //Burada da hayvan referansı yerine object yazdık.
+        //System.out.println(object.konus()); //Burada da hayvan referansı yerine object yazdık.
+
+        if (object instanceof Hayvan) {
+            Hayvan hayvan = (Hayvan) object; /* hayvan referansını object referansına eşitleyebilmemiz için
+                                                (Hayvan) object yaptık. Bu bir çevrim yöntemi.
+                                                int, double veya float veri tiplerinin birbirlerine çevrimlerini
+                                                hatırla. Orada da "(double)25" gibi ifadeler kullanıyorduk. */
+
+            System.out.println(hayvan.konus());
+
+        }
+        else if (object instanceof Kedi) {
+            Kedi kedi = (Kedi) object;
+            System.out.println(kedi.konus());
+
+        }
+        else if (object instanceof Kopek ) {
+            Kopek kopek = (Kopek) object;
+            System.out.println(kopek.konus());
+
+        }
+        else if (object instanceof At) {
+            At at = (At) object;
+            System.out.println(at.konus());
+
+        }
 
     }
     public static void main(String[] args) {
